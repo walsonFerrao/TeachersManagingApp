@@ -24,17 +24,18 @@ height:100%;
 
 const TeacherDetails=styled.div`
 width:60%;
-font-size:25px;
+font-size:20px;
 padding-left:10%;
 line-height:40px;
 padding-top:20px;
 
 
 `
-const Classes=styled.div`
+const Span=styled.span`
 
-width:50%;
-background-color:green;
+font-size:20px;
+color:black;
+font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 
 
 
@@ -60,10 +61,10 @@ return (
 
 <TeacherDetails>
 
-<div>NAME: {name}</div>
-<div>GENDER: {age}</div>
-<div>AGE:{gender}</div>
-<div>NumberOfClasses:{classlength}</div>
+<div><Span>NAME:</Span>  {name}</div>
+<div> <Span>GENDER:</Span> {age}</div>
+<div><Span>AGE:</Span>{gender}</div>
+<div><Span>NumberOfClasses:</Span>{classlength}</div>
 
 </TeacherDetails>
 </div>

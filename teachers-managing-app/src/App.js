@@ -5,7 +5,8 @@ import {Teacherscard} from './Components/TeachersCard'
 import {Login} from "./Components/Login"
 import {Addteachers} from "./Components/Addteachersform"
 import {Routes,Route} from 'react-router-dom'
-import {Home} from './Components/Home'
+import {Home} from './Components/Home';
+import {Teachermax} from './Components/Teacherfmax'
 function App() {
   return (
     <>
@@ -18,6 +19,7 @@ function App() {
     <Route path='/add' element={<Addteachers/>}/>
     <Route path='/' element={<Home/>}/>
     <Route path='/login' element={<Login/>}/>
+    <Route path='/teacher/:id' element={<Teachermax/>}/>
 
     </Routes>
 
