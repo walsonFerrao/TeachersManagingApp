@@ -42,7 +42,7 @@ background-color:green;
 
 
 
-export const Teacherscard=()=>{
+export const Teacherscard=({name,age,gender,classlength,img})=>{
 
 
 
@@ -54,16 +54,16 @@ return (
 
 <div style={{display:"flex"}}>
 <Imageholder width="50%" height="220px">
-<Img src="https://1.bp.blogspot.com/-zutAhAZSDxQ/XVNxDdWteVI/AAAAAAAALys/iczLli7tjs8rxrENka3tJQTsNKZuO3t1ACLcBGAs/s1600/IMG_20190814_075421_289.jpg"/>
+<Img src={img?img:"https://1.bp.blogspot.com/-zutAhAZSDxQ/XVNxDdWteVI/AAAAAAAALys/iczLli7tjs8rxrENka3tJQTsNKZuO3t1ACLcBGAs/s1600/IMG_20190814_075421_289.jpg"}/>
 </Imageholder>
 
 
 <TeacherDetails>
 
-<div>NAME: {"EMILY"}</div>
-<div>GENDER: {"FEMALE"}</div>
-<div>AGE:25</div>
-<div>NumberOfClasses:10</div>
+<div>NAME: {name}</div>
+<div>GENDER: {age}</div>
+<div>AGE:{gender}</div>
+<div>NumberOfClasses:{classlength}</div>
 
 </TeacherDetails>
 </div>

@@ -6,6 +6,7 @@ import Button from '@mui/material/Button';
 import { useState } from "react";
 import MenuItem from '@mui/material/MenuItem';
 import { display, fontSize } from "@mui/system";
+import axios from "axios";
 
 
 const genders = [
@@ -196,13 +197,19 @@ height:380px;
 
 const Displaydiv=(props)=>{
 console.log(props,"propps")
+    
+
+
+
+
+
 
 return(
   <div style={{display:"flex" ,gap:"20px",alignItems:"center",backgroundColor:"grey",justifyContent:"space-between",marginTop:"5px"}}>
 <div>Grade: {props.classname}</div>
 <div>Section: {props.section}</div>
 <div>Subject: {props.subject}</div>
-<button style={{backgroundColor:"black",color:"white"}}>Delete</button>
+<button onClick={()=>{props.deleteteachers(props.index)}}  style={{backgroundColor:"black",color:"white"}}>Delete</button>
 </div>
 )
 
@@ -218,6 +225,9 @@ const [classname,setclassname]=useState("1st");
 const [gender, setgender] = useState('male');
 const [subject,setsubject]=useState('Mathe')
 const [section,setsection]=useState("A")
+const [teachername,setteachername]=useState("")
+const [teacherage,setteacherage]=useState("")
+const [teacherimg,setteacherimg]=useState("")
 
     const handleChange = (event) => {
         setgender(event.target.value);
@@ -241,7 +251,40 @@ const [section,setsection]=useState("A")
     }
 
 
+    function deleteteachers(index)
+    {
+      setclassarray([...classarray.splice(index,0)])
 
+    
+    }
+
+    // function to post the data
+    function addtodatabase()
+    {
+    let payload={
+      name:teachername,
+      img:teacherimg,
+      age:teacherage,
+      gender:gender,
+      classes:classarray
+    }
+    console.log(payload)
+
+    fetch('http://localhost:8080/teacher',{
+      method: 'POST', // or 'PUT'
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(payload),
+    })
+    .then(response => response.json())
+    .then(data => {
+      console.log('Success:', data);
+    })
+    .catch((error) => {
+      console.error('Error:', error);
+    });
+    }
 
 
 return (
@@ -249,11 +292,11 @@ return (
     <Wrappper>
 
 <div style={{backgroundColor:"transparent",width:"40%"}}>
-<TextField id="filled-basic" label="name" variant="filled" />
+<TextField id="filled-basic" label="name" variant="filled" onChange={(e)=>{setteachername(e.target.value)}}/>
 <br />
-<TextField id="filled-basic" label="Age" variant="filled" />
+<TextField id="filled-basic" label="Age" variant="filled" onChange={(e)=>{setteacherage(e.target.value)}}/>
 <br />
-<TextField id="filled-basic" label="Filled" variant="filled" />
+<TextField id="filled-basic" label="img" variant="filled" onChange={(e)=>{setteacherimg(e.target.value)}}/>
 <br />
 <br />
 <div>
@@ -345,7 +388,7 @@ return (
 
 
 
-{classarray.map((ele,index)=> <Displaydiv key={index} section={ele.section} classname={ele.grade} subject={ele.subject}/>)}
+{classarray.map((ele,index)=> <Displaydiv key={index} section={ele.section} classname={ele.grade} subject={ele.subject} setclassarray={setclassarray} deleteteachers={deleteteachers} index={index}/>)}
 </div>
 
 
@@ -353,7 +396,7 @@ return (
     </Wrappper>
 
 
-    <Button size="large" variant="contained" style={{marginLeft:"40%"}}>ADD To DATABASE</Button>
+    <Button size="large" variant="contained" style={{marginLeft:"40%"}} onClick={addtodatabase}>ADD To DATABASE</Button>
 
     </Container>
 )
