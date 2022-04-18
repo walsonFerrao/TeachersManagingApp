@@ -9,6 +9,8 @@ import InputBase from '@mui/material/InputBase';
 import MenuIcon from '@mui/icons-material/Menu';
 import SearchIcon from '@mui/icons-material/Search';
 import {Link}  from 'react-router-dom'
+import axios from 'axios';
+import { elementTypeAcceptingRef } from '@mui/utils';
 
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
@@ -53,6 +55,25 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 }));
 
 export default function Navbar() {
+
+const [searched,setsearched]=React.useState([])
+
+function findteachers(e)
+{
+
+if(e.target.value=="")
+{
+  setsearched([])
+}
+  
+  axios.get(`https://the-teachers-app.herokuapp.com/teacher/searching/${e.target.value}`)
+  .then((res)=>{console.log(res);setsearched([...res.data])})
+  .catch((err)=>{console.log(err)})
+
+}
+
+
+
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static" color="secondary">
@@ -82,13 +103,23 @@ export default function Navbar() {
             <SearchIconWrapper>
               <SearchIcon />
             </SearchIconWrapper>
-            <StyledInputBase
+            <StyledInputBase onChange={findteachers}
               placeholder="Search…"
               inputProps={{ 'aria-label': 'search' }}
             />
           </Search>
         </Toolbar>
       </AppBar>
+
+
+      <div style={{width:"20%",position:"fixed",marginLeft:"78%",backgroundColor:"grey",borderRadius:"10px"}}>
+
+   {searched.length!=0?searched.map((ele)=><Link style={{textDecoration:"none",color:"black"}} to={`/teacher/${ele._id}`}><div  style={{marginLeft:"20px",height:"25px"}}>{ele.name}</div></Link> ):""}
+
+      </div>
+
+
+
     </Box>
   );
 }

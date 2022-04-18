@@ -8,10 +8,12 @@ import {Routes,Route} from 'react-router-dom'
 import {Home} from './Components/Home';
 import {Teachermax} from './Components/Teacherfmax'
 import {Updateteachers} from './Components/Updateachers'
+import {Debouncingdiv} from './Components/Debouncingdiv'
 function App() {
   return (
     <>
     <Navbar/>
+    <Debouncingdiv/>
     {/* <Teacherscard/>
     <Login/> */}
 

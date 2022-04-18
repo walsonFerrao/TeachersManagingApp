@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom"
 import styled from "styled-components"
 
 
@@ -44,15 +45,15 @@ font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubunt
 
 
 
-export const Teacherscard=({name,age,gender,classlength,img})=>{
+export const Teacherscard=({name,age,gender,classlength,img,id})=>{
 
-
+const navigate=useNavigate()
 
 
 return (
 <>
 
-<Wrapper>
+<Wrapper onClick={()=>{navigate(`/teacher/${id}`)}}>
 
 <div style={{display:"flex"}}>
 <Imageholder width="50%" height="220px">

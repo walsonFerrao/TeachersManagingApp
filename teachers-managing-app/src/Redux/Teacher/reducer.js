@@ -6,7 +6,7 @@ const initstate={
 
 
 teachers:[],
-
+searchedteachers:[]
 
 
 }

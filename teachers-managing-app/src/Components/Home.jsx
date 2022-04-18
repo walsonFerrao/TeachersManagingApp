@@ -114,14 +114,14 @@ return (
     <label htmlFor="">other</label><input type="checkbox" checked={params.gender=="other"} onClick={()=>{handleChange("other")}}/>
 </div>
 
-<Button variant="contained" disableElevation onClick={()=>{navigate("/add")}}>
+<button variant="contained" style={{backgroundColor:"blue",color:"white",borderRadius:"4px",border:"none",fontSize:"15px"}} disableElevation onClick={()=>{navigate("/add")}}>
       Add More Teachers
-    </Button>
+    </button>
 
  </Buttonwrapper>
 
 
-{teachers.map((ele)=><Link  style={{ textDecoration: 'none',color:"black" }} to={`/teacher/${ele._id}`}><Teacherscard name={ele.name} gender={ele.gender} age={ele.age} classlength={ele.classes.length} img={ele.img}/></Link>)        }
+{teachers.map((ele)=><Teacherscard name={ele.name} gender={ele.gender} age={ele.age} classlength={ele.classes.length} img={ele.img} id={ele._id}/>)        }
 
 
 
