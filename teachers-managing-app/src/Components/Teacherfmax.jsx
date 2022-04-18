@@ -3,6 +3,8 @@ import axios from 'axios'
 import { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import {Teacherscard}  from './TeachersCard'
+import {Button} from '@mui/material'
+import {Link} from 'react-router-dom'
 
 
 
@@ -28,11 +30,14 @@ const  [payload,setpayload]=useState({
     
     
     return(
+      <>
+     
       <div style={{display:"flex",width:"45%",height:"40px",gap:"30px",alignItems:"center",backgroundColor:"grey",marginTop:"5px",fontSize:"20px"}}>
     <div>Grade: {props.classname}</div>
     <div>Section: {props.section}</div>
     <div>Subject: {props.subject}</div>
     </div>
+    </>
     )
     
     
@@ -59,7 +64,7 @@ setpayload({...payload,name:data.name,img:data.img,age:data.age,gender:data.gend
 useEffect(()=>{
 
 
-axios.get(`http://localhost:8080/teacher/${id}`)
+axios.get(`https://the-teachers-app.herokuapp.com/teacher/${id}`)
 .then((res)=>{console.log(res.data);attachdata(res.data)})
 .catch((err)=>{console.log(err)})
 
@@ -68,7 +73,8 @@ axios.get(`http://localhost:8080/teacher/${id}`)
 
 
 return (
-
+  <>
+  <div style={{width:"90%",marginTop:"40px",}}> <Link style={{textDecoration:'none'}} to={`/updateteacher/${id}`}> < Button   style={{marginLeft:"85%",backgroundColor:"silver",color:"black",border:"1px solid black"}}>Edit Teacher Info</Button></Link></div>
 
 <div style={{marginLeft:"30%"}}>
 
@@ -82,7 +88,7 @@ return (
 
 
 
-
+</>
 
 
 )

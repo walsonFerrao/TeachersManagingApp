@@ -1,5 +1,5 @@
 
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import axios from 'axios'
 import {Teacherscard}  from './TeachersCard'
 import styled from 'styled-components'
@@ -58,7 +58,7 @@ export const Home=()=>{
 
     const dispatch=useDispatch()
    
-    const teachers=useSelector((store)=>store.teacher.teachers[0])||[]
+    const teachers=useSelector((store)=>store.teacher.teachers)||[]
 
     console.log(teachers)
 
@@ -80,8 +80,9 @@ export const Home=()=>{
      function getitem()
      {
 
-        axios.get(`http://localhost:8080/teacher?filterby=${params.gender}&sortby=${params.sortby}`)
-        .then((res)=>{console.log(res);dispatch(get_teachers(res.data))})
+        fetch(`https://the-teachers-app.herokuapp.com/teacher?filterby=${params.gender}&sortby=${params.sortby}`)
+        .then((res)=>res.json())
+        .then((res)=>{console.log(res);dispatch(get_teachers(res))})
         .catch((err)=>{console.log(err)})
 
      }
@@ -91,7 +92,7 @@ export const Home=()=>{
 
      },[params])
 
-     
+     const navigate=useNavigate()
 
 return (
     <>
@@ -113,7 +114,7 @@ return (
     <label htmlFor="">other</label><input type="checkbox" checked={params.gender=="other"} onClick={()=>{handleChange("other")}}/>
 </div>
 
-<Button variant="contained" disableElevation onClick={()=>{handlesorting("dsc")}}>
+<Button variant="contained" disableElevation onClick={()=>{navigate("/add")}}>
       Add More Teachers
     </Button>
 

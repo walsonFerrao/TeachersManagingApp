@@ -6,6 +6,7 @@ const Wrapper=styled.div`
 
 background-color:grey;
 width:45%;
+margin-bottom:10px;
 
 `
 
@@ -62,8 +63,8 @@ return (
 <TeacherDetails>
 
 <div><Span>NAME:</Span>  {name}</div>
-<div> <Span>GENDER:</Span> {age}</div>
-<div><Span>AGE:</Span>{gender}</div>
+<div> <Span>GENDER:</Span> {gender}</div>
+<div><Span>AGE:</Span>{age}</div>
 <div><Span>NumberOfClasses:</Span>{classlength}</div>
 
 </TeacherDetails>

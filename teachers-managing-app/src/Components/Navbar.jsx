@@ -74,7 +74,10 @@ export default function Navbar() {
           >
             TEACHERS-PRO
           </Typography>
-          <Link to={"/login"}><button style={{marginRight:"25px",backgroundColor:"blue",height:"25px"}}>Login</button></Link>
+          <Link to={"/"}><button style={{marginRight:"25px",backgroundColor:"blue",height:"25px",color:"white"}}>Home</button></Link>
+
+          <Link to={"/login"}><button style={{marginRight:"25px",backgroundColor:"blue",height:"25px",color:"white"}}>Login</button></Link>
+
           <Search>
             <SearchIconWrapper>
               <SearchIcon />

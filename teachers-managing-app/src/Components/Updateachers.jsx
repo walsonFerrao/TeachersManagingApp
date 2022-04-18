@@ -7,7 +7,7 @@ import { useState } from "react";
 import MenuItem from '@mui/material/MenuItem';
 import { display, fontSize } from "@mui/system";
 import axios from "axios";
-import { Navigate, useNavigate } from "react-router-dom";
+import { useParams } from "react-router-dom";
 
 
 const genders = [
@@ -219,7 +219,10 @@ return(
 
 
 
-export const Addteachers=()=>{
+export const Updateteachers=()=>{
+
+    const {id}=useParams()
+    console.log(id)
 
 const[classarray,setclassarray]=useState([]);
 const [classname,setclassname]=useState("1st");
@@ -229,7 +232,6 @@ const [section,setsection]=useState("A")
 const [teachername,setteachername]=useState("")
 const [teacherage,setteacherage]=useState("")
 const [teacherimg,setteacherimg]=useState("")
-const navigate=useNavigate()
 
     const handleChange = (event) => {
         setgender(event.target.value);
@@ -272,15 +274,13 @@ const navigate=useNavigate()
     }
     console.log(payload)
 
-    axios.post('https://the-teachers-app.herokuapp.com/teacher',payload)
+    axios.put(`https://the-teachers-app.herokuapp.com/teacher/${id}`,payload)
     .then(data => {
-      console.log('Success:', data);navigate("/")})
+      console.log('Success:', data);
+    })
     .catch((error) => {
       console.error('Error:', error);
     });
-
-
-
     }
 
 
@@ -393,7 +393,7 @@ return (
     </Wrappper>
 
 
-    <Button size="large" variant="contained" style={{marginLeft:"40%"}} onClick={addtodatabase}>ADD To DATABASE</Button>
+    <Button size="large" variant="contained" style={{marginLeft:"40%"}} onClick={addtodatabase}>UPDATE TEACHER INFO</Button>
 
     </Container>
 )
